@@ -3,7 +3,7 @@ import { useRef, useEffect, useState } from 'react';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import { usePlayer } from '../../contexts/PlayerContext';
-import { PlayerContainer, CurrentEpisode, EmptyPlayer, Progress, SliderContainer, EmptySlider } from './styles';
+import { PlayerContainer, CurrentEpisode, EmptyPlayer, Progress, } from './styles';
 //import styles from './styles.module.scss';
 import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString';
 
@@ -91,7 +91,7 @@ export function Player() {
       <footer className={!episode ? styles.empty : ''}>
         <Progress>
           <span>{convertDurationToTimeString(progress)}</span>
-          <SliderContainer>
+          <Progress.SliderContainer>
             {episode ? (
               <Slider
                 max={episode.duration}

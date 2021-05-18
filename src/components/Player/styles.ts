@@ -70,14 +70,6 @@ export const EmptyPlayer = styled.div`
   justify-content: center;
 `;
 
-export const SliderContainer = styled.div`
-
-`;
-
-export const EmptySlider = styled.div`
-
-`;
-
 export const Progress = styled.div`
   display: flex;
   align-items: center;
