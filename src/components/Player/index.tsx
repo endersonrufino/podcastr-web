@@ -3,7 +3,8 @@ import { useRef, useEffect, useState } from 'react';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import { usePlayer } from '../../contexts/PlayerContext';
-import styles from './styles.module.scss';
+import { PlayerContainer, CurrentEpisode, EmptyPlayer, Progress, SliderContainer, EmptySlider } from './styles';
+//import styles from './styles.module.scss';
 import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString';
 
 export function Player() {
@@ -64,14 +65,14 @@ export function Player() {
   const episode = episodeList[currentEpisodeIndex];
 
   return (
-    <div className={styles.playerContainer}>
+    <PlayerContainer>
       <header>
         <img src="/playing.svg" alt="Tocando agora" />
         <strong>Tocando agora</strong>
       </header>
 
       { episode ? (
-        <div className={styles.currentEpisode}>
+        <CurrentEpisode>
           <Image
             width={592}
             height={592}
@@ -80,17 +81,17 @@ export function Player() {
           />
           <strong>{episode.title}</strong>
           <span>{episode.members}</span>
-        </div>
+        </CurrentEpisode>
       ) : (
-        <div className={styles.emptyPlayer}>
+        <EmptyPlayer>
           <strong>Selecione um podcast para ouvir</strong>
-        </div>
+        </EmptyPlayer>
       )}
 
       <footer className={!episode ? styles.empty : ''}>
-        <div className={styles.progress}>
+        <Progress>
           <span>{convertDurationToTimeString(progress)}</span>
-          <div className={styles.slider}>
+          <SliderContainer>
             {episode ? (
               <Slider
                 max={episode.duration}
@@ -101,11 +102,11 @@ export function Player() {
                 handleStyle={{ borderColor: '#04d361', borderWidth: 4 }}
               />
             ) : (
-              <div className={styles.emptySlider} />
+              <EmptySlider />
             )}
-          </div>
+          </SliderContainer>
           <span>{convertDurationToTimeString(episode?.duration ?? 0)}</span>
-        </div>
+        </Progress>
 
         {episode && (
           <audio
@@ -160,6 +161,6 @@ export function Player() {
           </button>
         </div>
       </footer>
-    </div>
+    </PlayerContainer>
   );
 }
